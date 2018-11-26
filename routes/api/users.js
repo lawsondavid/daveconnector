@@ -83,9 +83,8 @@ router.get(
     '/current',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
-        const user = Object.assign({}, req.user.toObject());
-        delete user.password;
-        res.json(user);
+        const user = req.user;
+        res.json({id: user.id, name: user.name, email: user.email});
     }
 );
 
