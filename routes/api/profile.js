@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const Profile = require('../../models/profile');
+const User = require('../../models/User');
 const validateProfileInput = require('../../validation/profile');
 const validateExperienceInput = require('../../validation/experience');
 const validateEducationInput = require('../../validation/education');
@@ -231,6 +232,21 @@ router.delete('/education/:edu_id', passport.authenticate('jwt', {session: false
             } else {
                 res.status(404).json({msg: "No profile"});
             }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({msg: 'Something went wrong'});
+        })
+});
+
+
+// @route DELETE api/profile
+// @desc Deletes user and profile
+// @access private
+router.delete('/', passport.authenticate('jwt', {session: false}), (req, res) => {
+    Profile.findOneAndRemove({user: req.user.id})
+        .then(() => {
+           User.findOneAndRemove({_id: req.user.id}).then(() => res.json({success: true}));
         })
         .catch(err => {
             console.log(err);
