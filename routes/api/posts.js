@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const Post = require('../../models/Post');
+const Profile = require('../../models/profile');
 const validatePostInput = require('../../validation/post');
 
 // @route GET api/posts/test
@@ -48,4 +49,23 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req, res) => {
     });
     newPost.save().then(post => res.json(post));
 });
+module.exports = router;
+
+// @route DELETE api/posts
+// @desc Delete post
+// @access private
+router.delete('/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+    Profile.findOne({user: req.user.id}).then(profile => {
+        Post.findById(req.params.id)
+            .then(post => {
+                if (post.user.toString() !== req.user.id) {
+                    return res.status(403).json({notauthorize: 'User not authorized to delete this post'});
+                }
+                //delete
+                post.remove().then(() => res.json({success: true}));
+            })
+            .catch(err => res.status(404).json({postnotfound: 'Post not found'}));
+    });
+});
+
 module.exports = router;
