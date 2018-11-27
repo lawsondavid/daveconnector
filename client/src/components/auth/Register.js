@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authAction';
 import classnames from 'classnames';
 
 class Register extends Component {
@@ -29,13 +31,15 @@ class Register extends Component {
             password: this.state.password,
             password2: this.state.password2,
         };
-        axios.post('/api/users/register', newUser)
-            .then(res => console.log(res.data))
-            .catch(err => this.setState({errors: err.response.data}));
+        // axios.post('/api/users/register', newUser)
+        //     .then(res => console.log(res.data))
+        //     .catch(err => this.setState({errors: err.response.data}));
+        this.props.registerUser(newUser);
     }
 
     render() {
         const {errors} = this.state;
+        const { user } = this.props.auth;
 
         return (
             <div className="register">
@@ -53,7 +57,7 @@ class Register extends Component {
                                     { errors.name && (<div className="invalid-feedback">{errors.name}</div>) }
                                 </div>
                                 <div className="form-group">
-                                    <input type="email" className="form-control form-control-lg"
+                                    <input type="email"
                                            placeholder="Email Address" name="email" value={this.state.email}
                                            className={classnames('form-control form-control-lg', {'is-invalid': errors.email})}
                                            onChange={this.onChange}/>
@@ -63,14 +67,14 @@ class Register extends Component {
                                     </small>
                                 </div>
                                 <div className="form-group">
-                                    <input type="password" className="form-control form-control-lg"
+                                    <input type="password"
                                            placeholder="Password" name="password" value={this.state.password}
                                            className={classnames('form-control form-control-lg', {'is-invalid': errors.password})}
                                            onChange={this.onChange}/>
                                     { errors.password && (<div className="invalid-feedback">{errors.password}</div>) }
                                 </div>
                                 <div className="form-group">
-                                    <input type="password" className="form-control form-control-lg"
+                                    <input type="password"
                                            placeholder="Confirm Password" name="password2" value={this.state.password2}
                                            className={classnames('form-control form-control-lg', {'is-invalid': errors.password2})}
                                            onChange={this.onChange}/>
@@ -86,4 +90,13 @@ class Register extends Component {
     }
 }
 
-export default Register;
+Register.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, { registerUser })(Register);
