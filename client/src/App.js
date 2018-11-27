@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
+import { setCurrentUser } from './actions/authAction';
+
 import {Provider} from 'react-redux';
 import store from './store';
 
@@ -10,11 +14,17 @@ import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 
+if (localStorage.jwtToken) {
+    setAuthToken(localStorage.jwtToken);
+    const decoded = jwt_decode(localStorage.jwtToken);
+    store.dispatch(setCurrentUser(decodadded));
+}
+
 class App extends Component {
 
     render() {
         return (
-            <Provider store={ store }>
+            <Provider store={ store } >
                 <Router>
                     <div className="App">
                         <Navbar/>
