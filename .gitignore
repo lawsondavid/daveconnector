@@ -2,3 +2,5 @@
 /node_modules
 package-lock.json
 *.iml
+/devconnector_theme
+node_modules/
