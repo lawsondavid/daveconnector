@@ -8,7 +8,7 @@ This repo contains an express application with a nested react application
 2. In the dir /client a react application exists
 3. By default the Express app will start on localhost:5000 and the React app on localhost:3000
 
-# Starting the app
+## Starting the app
 Before statring ensure you have node and npm installed.
 
 To start the app 
@@ -26,5 +26,31 @@ This will start the Rect app on
 This will use the backend Express app, which is started on 
 
 * http://localhost:5000
+
+## Starting the apps separately
+
+If for some reason you wish to start the apps separately you can do so
+
+### Express App
+
+```bash
+$ git clone https://github.com/lawsondavid/daveconnector.git
+$ cd daveconnector
+$ npm install 
+$ npm run server
+```
+open http://localhost:5000
+
+### React App
+
+```bash
+$ git clone https://github.com/lawsondavid/daveconnector.git
+$ cd daveconnector/client
+$ npm install 
+$ npm start
+```
+open http://localhost:3000
+
+
 
 
