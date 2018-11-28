@@ -35,13 +35,21 @@ module.exports = {
 ## Starting the app
 Before statring ensure you have node and npm installed. 
 
-To start the app 
+#### To start the app (first time)
 
 ```bash
 $ git clone https://github.com/lawsondavid/daveconnector.git
 $ cd daveconnector
 $ # UPDATE THE FILE config/keys_dev.js (described in previous section)
 $ npm install 
+$ npm run client-install
+$ npm run dev
+```
+
+#### Subsequent starts
+
+```bash
+$ cd <daveconnector-repo>
 $ npm run dev
 ```
 
