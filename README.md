@@ -26,7 +26,7 @@ module.exports = {
 Update it with the values of you database, e.g.
 ```javascript
 module.exports = {
-    mongoURI: 'mongodb://john:banana@ds115857.mlab.com:15854/daveconnector',
+    mongoURI: 'mongodb://john:banana1@ds115857.mlab.com:15854/daveconnector',
     secretOrKey: 'secret',
 };
 ```
