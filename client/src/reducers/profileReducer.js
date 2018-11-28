@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-    switch (action) {
+    switch (action.type) {
         case PROFILE_LOADING:
             return {
                 ...state,
@@ -16,13 +16,14 @@ export default function (state = initialState, action) {
         case GET_PROFILE:
             return {
                 ...state,
-                profile: action.profile,
+                profile: action.payload,
                 loading: false
             };
         case CLEAR_CURRENT_PROFILE:
             return {
                 ...state,
-                profile: null
+                profile: null,
+                loading: false
             };
         default:
             return state;
