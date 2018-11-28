@@ -14,7 +14,7 @@ This repo contains an express application with a nested react application
 Prior to starting you will need to create a MongoDB called 'daveconnector'. This is easy with mlab https://mlab.com/
 
 ### Configure app to point to database
-You will need to update the configuration in the file `<project-root>/config/dev_keys.js` to point to your databse.
+You will need to update the configuration in the file `<project-root>/config/keys_dev.js` to point to your databse.
 The default value is:
 
 ```javascript
@@ -30,7 +30,7 @@ module.exports = {
     secretOrKey: 'secret',
 };
 ```
-*You don't want to check these changes in to git, you may want to add the file dev_keys.js to your .gitignore*
+*You don't want to check these changes in to git, you may want to add the file keys_dev.js to your .gitignore*
 
 ## Starting the app
 Before statring ensure you have node and npm installed. 
@@ -40,7 +40,7 @@ To start the app
 ```bash
 $ git clone https://github.com/lawsondavid/daveconnector.git
 $ cd daveconnector
-$ # UPDATE THE FILE config/dev_keys.js (described in previous section)
+$ # UPDATE THE FILE config/keys_dev.js (described in previous section)
 $ npm install 
 $ npm run dev
 ```
