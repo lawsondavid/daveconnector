@@ -8,17 +8,44 @@ This repo contains an express application with a nested react application
 2. In the dir /client a react application exists
 3. By default the Express app will start on localhost:5000 and the React app on localhost:3000
 
+## DB Setup
+
+### Create database
+Prior to starting you will need to create a MongoDB called 'daveconnector'. This is easy with mlab https://mlab.com/
+
+### Configure app to point to database
+You will need to update the configuration in the file `<project-root>/config/dev_keys.js` to point to your databse.
+The default value is:
+
+```javascript
+module.exports = {
+    mongoURI: 'mongodb://<dbuser>:<dbpassword>@<mongohost>:<mongoport>/daveconnector',
+    secretOrKey: 'secret',
+};
+```
+Update it with the values of you database, e.g.
+```javascript
+module.exports = {
+    mongoURI: 'mongodb://john:banana@ds115857.mlab.com:15854/daveconnector',
+    secretOrKey: 'secret',
+};
+```
+
+In the root of the project there is a folder `<repo>/config/dev_keys.js`
+
 ## Starting the app
-Before statring ensure you have node and npm installed.
+Before statring ensure you have node and npm installed. 
 
 To start the app 
 
 ```bash
 $ git clone https://github.com/lawsondavid/daveconnector.git
 $ cd daveconnector
+$ # UPDATE THE FILE config/dev_keys.js (as described in previous section)
 $ npm install 
 $ npm run dev
 ```
+
 This will start the Rect app on 
 
 * http://localhost:3000
@@ -50,7 +77,5 @@ $ npm install
 $ npm start
 ```
 open http://localhost:3000
-
-
 
 
