@@ -30,8 +30,7 @@ module.exports = {
     secretOrKey: 'secret',
 };
 ```
-
-In the root of the project there is a folder `<repo>/config/dev_keys.js`
+*You don't want to check these changes in to git, you may want to add the file dev_keys.js to your .gitignore*
 
 ## Starting the app
 Before statring ensure you have node and npm installed. 
@@ -41,7 +40,7 @@ To start the app
 ```bash
 $ git clone https://github.com/lawsondavid/daveconnector.git
 $ cd daveconnector
-$ # UPDATE THE FILE config/dev_keys.js (as described in previous section)
+$ # UPDATE THE FILE config/dev_keys.js (described in previous section)
 $ npm install 
 $ npm run dev
 ```
