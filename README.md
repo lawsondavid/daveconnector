@@ -13,17 +13,18 @@ Before statring ensure you have node and npm installed.
 
 To start the app 
 
-> git clone https://github.com/lawsondavid/daveconnector.git
-> cd daveconnector
-> npm install 
-> npm run dev
-
-This will start the Express app on 
-
-* http://localhost:5000
-
+```bash
+$ git clone https://github.com/lawsondavid/daveconnector.git
+$ cd daveconnector
+$ npm install 
+$ npm run dev
+```
 This will start the Rect app on 
 
 * http://localhost:3000
+
+This will use the backend Express app, which is started on 
+
+* http://localhost:5000
 
 
